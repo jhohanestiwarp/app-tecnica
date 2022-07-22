@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-header">
+    Ruta
+  </div>
+  <div class="card-body">
+    <form ngNativeValidate [formGroup]="formFly" (ngSubmit)="calcularVuelos()">
+      <div class="mb-3">
+        <label for="" class="form-label">Origen</label>
+        <input required type="text" class="form-control" name="" id="" formControlName="origin"
+          aria-describedby="helpId" placeholder="Escribe tu Origen">
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Destino</label>
+        <input required type="text" class="form-control" name="" id="" formControlName="destino"
+          aria-describedby="helpId" placeholder="Escribe tu Destino">
+      </div>
+      <div class="btn-group" role="group" aria-label="">
+        <button type="submit" class="btn btn-success">Enviar ruta</button>
+      </div>
+    </form>
+  </div>
+
+
+
+  <div class="card-body" *ngIf="routesFlights.length; else vuelos">
+    <h2>ruta de viaje </h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>departureStation</th>
+          <th>arrivalStation</th>
+          <th>flightCarrier</th>
+          <th>flightNumber</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cont of routesFlights; let iControl=index">
+          <td>{{iControl + 1}}</td>
+          <td>{{cont.Origin}}</td>
+          <td>{{cont.Destination}}</td>
+          <td>{{cont.Transport.FlightCarrier}}</td>
+          <td>{{cont.Transport.FlightNumber}}</td>
+          <td>{{cont.Price}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <ng-template #vuelos>
+    <div class="card-body">
+      <h2>Lista de Vuelos </h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>departureStation</th>
+            <th>arrivalStation</th>
+            <th>flightCarrier</th>
+            <th>flightNumber</th>
+            <th>price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cont of ELEMENT_DATA; let iControl=index">
+            <td>{{cont.departureStation}}</td>
+            <td>{{cont.arrivalStation}}</td>
+            <td>{{cont.flightCarrier}}</td>
+            <td>{{cont.flightNumber}}</td>
+            <td>{{cont.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </ng-template>
